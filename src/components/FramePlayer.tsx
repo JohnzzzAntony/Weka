@@ -57,35 +57,51 @@ export default function FramePlayer({
   }, [framePath, frameCount]);
 
   useEffect(() => {
+    let animationFrameId: number;
+
     const render = () => {
       if (!canvasRef.current || images.length === 0) return;
-      const ctx = canvasRef.current.getContext("2d");
+      const ctx = canvasRef.current.getContext("2d", { alpha: false }); // Performance boost
       if (!ctx) return;
 
-      const index = Math.min(Math.max(Math.floor(frameIndex.get()), 1), frameCount);
+      const index = Math.min(Math.max(Math.floor(smoothProgress.get() * (frameCount - 1)) + 1, 1), frameCount);
       const img = images[index - 1] || images[0];
 
       const canvas = canvasRef.current;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Handle high DPI screens
+      const dpr = window.devicePixelRatio || 1;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+      }
 
       const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
       const x = (canvas.width - img.width * scale) / 2;
       const y = (canvas.height - img.height * scale) / 2;
       
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
     };
 
-    const unsubscribe = frameIndex.on("change", render);
-    render();
+    const loop = () => {
+      render();
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    if (isLoaded) {
+      animationFrameId = requestAnimationFrame(loop);
+    }
 
     window.addEventListener("resize", render);
     return () => {
-      unsubscribe();
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", render);
     };
-  }, [images, frameIndex, frameCount]);
+  }, [images, isLoaded, frameCount]);
 
   return (
     <div className="absolute inset-0 w-full h-full">

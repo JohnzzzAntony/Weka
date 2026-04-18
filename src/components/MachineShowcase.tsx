@@ -12,8 +12,8 @@ export default function MachineShowcase() {
   });
 
   const smoothScroll = useSpring(scrollYProgress, { 
-    stiffness: 30, 
-    damping: 40,
+    stiffness: 40, 
+    damping: 60,
     restDelta: 0.0001
   });
 

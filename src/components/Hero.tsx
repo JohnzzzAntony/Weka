@@ -13,8 +13,9 @@ export default function Hero() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, { 
-    stiffness: 30, 
-    damping: 40,
+    stiffness: 40, 
+    damping: 60,
+    restDelta: 0.001
   });
 
   const clipWidth = useTransform(smoothProgress, [0, 0.4], [60, 100]);
@@ -34,6 +35,7 @@ export default function Hero() {
             borderRadius: useTransform(smoothProgress, [0, 0.4], [40, 0]),
             opacity,
             scale,
+            willChange: "transform, width, height, border-radius",
           }}
           className="relative overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/5"
         >
