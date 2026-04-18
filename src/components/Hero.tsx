@@ -19,36 +19,59 @@ export default function Hero() {
   });
 
   const clipWidth = useTransform(smoothProgress, [0, 0.4], [60, 100]);
-  const clipHeight = useTransform(smoothProgress, [0, 0.4], [70, 100]);
-  const borderRadius = useTransform(smoothProgress, [0, 0.4], [40, 0]);
   const scale = useTransform(smoothProgress, [0, 0.4], [1.1, 1]);
   const opacity = useTransform(smoothProgress, [0.8, 1], [1, 0]);
 
   return (
-    <section ref={containerRef} className="h-[250vh] relative bg-[#0f171c]">
+    <section 
+      ref={containerRef} 
+      className="relative h-[300vh] w-full bg-[#0f171c]"
+    >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* The "Geometric Frame" that expands */}
         <motion.div
           style={{
-            width: useTransform(smoothProgress, [0, 0.4], ["60%", "100%"]),
-            height: useTransform(smoothProgress, [0, 0.4], ["70%", "100%"]),
-            borderRadius: useTransform(smoothProgress, [0, 0.4], [40, 0]),
+            width: "100%",
+            height: "100%",
             opacity,
             scale,
-            willChange: "transform, width, height, border-radius",
+            willChange: "transform",
           }}
-          className="relative overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/5"
+          className="relative overflow-hidden bg-black"
         >
-          <FramePlayer 
-            framePath="/frames/set1" 
-            frameCount={240} 
-            containerRef={containerRef}
-            brightness={0.75} // Reduced to 75% visibility as requested
-          />
+          <div className="absolute inset-0 z-0">
+            <FramePlayer 
+              framePath="/frames/set1" 
+              frameCount={240} 
+              containerRef={containerRef}
+              brightness={0.7}
+            />
+          </div>
           
-          {/* Subtle Industrial Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 pointer-events-none" />
-          
+          {/* Dynamic Smoke Effects */}
+          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+            <motion.div 
+              animate={{ 
+                x: [-100, 100], 
+                opacity: [0.2, 0.4, 0.2],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_70%)] blur-[120px]"
+            />
+            <motion.div 
+              animate={{ 
+                x: [100, -100], 
+                opacity: [0.1, 0.3, 0.1],
+                scale: [1.2, 1, 1.2]
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute -bottom-1/2 -right-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_60%)] blur-[100px]"
+            />
+            
+            {/* Atmospheric Fog */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-white/[0.02] to-black/40 mix-blend-overlay" />
+          </div>
+
           {/* Top-Left Hero Title */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -65,7 +88,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Cinematic Vignette */}
-          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)] pointer-events-none" />
+          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,1)] pointer-events-none z-30" />
         </motion.div>
 
         {/* HUD Elements that fade in after frame expands */}
