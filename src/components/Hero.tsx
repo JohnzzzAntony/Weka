@@ -13,19 +13,18 @@ export default function Hero() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, { 
-    stiffness: 40, 
-    damping: 60,
-    restDelta: 0.001
+    stiffness: 300, 
+    damping: 30,
+    restDelta: 0.0001
   });
 
-  const clipWidth = useTransform(smoothProgress, [0, 0.4], [60, 100]);
-  const scale = useTransform(smoothProgress, [0, 0.4], [1.1, 1]);
+  const scale = useTransform(smoothProgress, [0, 0.4], [1.05, 1]);
   const opacity = useTransform(smoothProgress, [0.8, 1], [1, 0]);
 
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[300vh] w-full bg-[#0f171c]"
+      className="relative h-[300vh] w-full bg-[#0a0f12]"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <motion.div
@@ -34,7 +33,7 @@ export default function Hero() {
             height: "100%",
             opacity,
             scale,
-            willChange: "transform",
+            willChange: "transform, opacity",
           }}
           className="relative overflow-hidden bg-black"
         >
@@ -43,66 +42,65 @@ export default function Hero() {
               framePath="/frames/set1" 
               frameCount={240} 
               containerRef={containerRef}
-              brightness={0.7}
+              brightness={0.8}
             />
           </div>
           
-          {/* Dynamic Smoke Effects */}
-          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-            <motion.div 
-              animate={{ 
-                x: [-100, 100], 
-                opacity: [0.2, 0.4, 0.2],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_70%)] blur-[120px]"
-            />
-            <motion.div 
-              animate={{ 
-                x: [100, -100], 
-                opacity: [0.1, 0.3, 0.1],
-                scale: [1.2, 1, 1.2]
-              }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute -bottom-1/2 -right-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_60%)] blur-[100px]"
-            />
+          {/* Advanced Atmospheric Engine */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-tr from-safety-orange/5 via-transparent to-white/5 opacity-50" />
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent" />
             
-            {/* Atmospheric Fog */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-white/[0.02] to-black/40 mix-blend-overlay" />
+            {/* Dynamic Light Streaks */}
+            <motion.div 
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/4 left-0 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-safety-orange/20 to-transparent blur-sm"
+            />
           </div>
 
-          {/* Top-Left Hero Title */}
+          {/* Premium Industrial Title */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="absolute top-10 left-6 md:top-20 md:left-20 pointer-events-none z-20"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-10 left-6 md:top-24 md:left-24 pointer-events-none z-20"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-[0.1em] uppercase drop-shadow-[0_0_30px_rgba(0,0,0,0.8)] border-l-4 border-safety-orange pl-4 md:pl-6 leading-tight">
-              Engineering <br /> <span className="text-safety-orange">Excellence.</span>
-            </h1>
-            <p className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-bold mt-2 md:mt-4 ml-4 md:ml-6">
-              Industrial Automation Units
-            </p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-[2px] bg-safety-orange" />
+                <span className="text-safety-orange font-black text-[10px] tracking-[0.6em] uppercase">Status: Operational</span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                PRECISION <br /> <span className="text-gradient">ENGINEERING.</span>
+              </h1>
+              <div className="mt-6 p-4 glass-panel border border-white/5 backdrop-blur-sm max-w-sm">
+                <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-medium leading-relaxed">
+                  Next-generation industrial automation for critical infrastructure modules.
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Cinematic Vignette */}
-          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,1)] pointer-events-none z-30" />
-        </motion.div>
-
-        {/* HUD Elements that fade in after frame expands */}
-        <motion.div 
-          style={{ opacity: useTransform(smoothProgress, [0.4, 0.6], [0, 1]) }}
-          className="absolute bottom-12 left-12 flex flex-col gap-2 pointer-events-none"
-        >
-          <div className="flex items-center gap-2 text-safety-orange">
-            <div className="w-2 h-2 bg-safety-orange animate-pulse rounded-full" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em]">Shot Blast Sequence [01A]</span>
-          </div>
-          <div className="text-white/20 text-[10px] uppercase tracking-widest font-bold">
-            X-AXIS: CALIBRATED | Y-AXIS: OPTIMAL
-          </div>
+          {/* Technical HUD Overlay (Active on scroll) */}
+          <motion.div 
+            style={{ 
+              opacity: useTransform(smoothProgress, [0.05, 0.15, 0.85, 0.95], [0, 1, 1, 0]),
+              translateY: useTransform(smoothProgress, [0, 1], [0, -50])
+            }}
+            className="absolute top-1/2 right-24 -translate-y-1/2 hidden lg:flex flex-col gap-8 pointer-events-none z-20"
+          >
+            {[
+              { label: "RPM", val: "14,200" },
+              { label: "FRIC", val: "0.002" },
+              { label: "TEMP", val: "42°C" }
+            ].map((stat) => (
+              <div key={stat.label} className="text-right">
+                <div className="text-white/20 text-[9px] font-black tracking-widest uppercase">{stat.label}</div>
+                <div className="text-white text-2xl font-black tabular-nums">{stat.val}</div>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
