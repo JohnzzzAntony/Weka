@@ -8,48 +8,52 @@ export default function MachineShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
   const smoothScroll = useSpring(scrollYProgress, { 
-    stiffness: 40, 
-    damping: 60,
+    stiffness: 100, 
+    damping: 30,
     restDelta: 0.0001
   });
 
-  const opacity_1 = useTransform(smoothScroll, [0, 0.1, 0.35, 0.4], [0, 1, 1, 0]);
-  const opacity_2 = useTransform(smoothScroll, [0.45, 0.5, 0.75, 0.8], [0, 1, 1, 0]);
-  const opacity_3 = useTransform(smoothScroll, [0.85, 0.9, 0.95, 1], [0, 1, 1, 0]);
+  // Balanced transitions for a 500vh scroll
+  const opacity_1 = useTransform(smoothScroll, [0, 0.05, 0.25, 0.3], [0, 1, 1, 0]);
+  const opacity_2 = useTransform(smoothScroll, [0.35, 0.4, 0.65, 0.7], [0, 1, 1, 0]);
+  const opacity_3 = useTransform(smoothScroll, [0.75, 0.8, 0.95, 1], [0, 1, 1, 1]); // Persist at end
 
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[500vh] w-full bg-[#0f171c] overflow-hidden"
+      className="relative h-[600vh] w-full bg-[#0a0f12] overflow-hidden"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         <FramePlayer 
           framePath="/frames/brush" 
           frameCount={240} 
           containerRef={containerRef} 
-          brightness={0.4}
+          brightness={0.6}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f171c] via-transparent to-[#0f171c]/50" />
+        {/* Technical Grid Overlay to fill space */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f171c] via-transparent to-[#0f171c]" />
         
         {/* Stage 1: Brush Mastery */}
         <motion.div 
-          style={{ opacity: opacity_1, y: useTransform(smoothScroll, [0, 0.4], [50, -50]) }}
+          style={{ opacity: opacity_1, y: useTransform(smoothScroll, [0, 0.3], [50, -50]) }}
           className="absolute inset-0 z-10 max-w-7xl mx-auto px-6 flex items-center"
         >
           <div className="max-w-2xl space-y-6 md:space-y-8">
-            <span className="text-safety-orange font-black text-[8px] md:text-xs tracking-[0.5em] uppercase px-3 py-1.5 md:px-4 md:py-2 border border-safety-orange/20 rounded-full inline-block backdrop-blur-md">
-              Process Phase 01
-            </span>
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">
-              Automated <br />
-              <span className="text-gradient">Brush Mastery.</span>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-[1px] bg-safety-orange" />
+              <span className="text-safety-orange font-black text-[10px] tracking-[0.5em] uppercase">SYSTEM_DEPLOYMENT: 01</span>
+            </div>
+            <h2 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-tighter leading-[0.9]">
+              AUTOMATED <br />
+              <span className="text-gradient">BRUSH MASTERY.</span>
             </h2>
-            <p className="text-white/40 text-sm sm:text-lg md:text-xl leading-relaxed font-medium">
+            <p className="text-white/40 text-sm sm:text-lg md:text-xl leading-relaxed font-medium max-w-md">
               Revolutionizing industrial tufting with high-inertia fiber placement. 
               Our modules achieve sub-millimeter trim accuracy.
             </p>
@@ -58,18 +62,19 @@ export default function MachineShowcase() {
 
         {/* Stage 2: Integration & Control */}
         <motion.div 
-          style={{ opacity: opacity_2, y: useTransform(smoothScroll, [0.45, 0.8], [50, -50]) }}
+          style={{ opacity: opacity_2, y: useTransform(smoothScroll, [0.35, 0.7], [50, -50]) }}
           className="absolute inset-0 z-10 max-w-7xl mx-auto px-6 flex items-center justify-end"
         >
           <div className="max-w-2xl space-y-6 md:space-y-8 text-right flex flex-col items-end">
-            <span className="text-safety-orange font-black text-[8px] md:text-xs tracking-[0.5em] uppercase px-3 py-1.5 md:px-4 md:py-2 border border-safety-orange/20 rounded-full inline-block backdrop-blur-md">
-              Process Phase 02
-            </span>
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">
-              Sync-System <br />
-              <span className="text-gradient">Integration.</span>
+             <div className="flex items-center gap-3">
+              <span className="text-safety-orange font-black text-[10px] tracking-[0.5em] uppercase">INTEGRATION_LEVEL: ALPHA</span>
+              <div className="w-8 h-[1px] bg-safety-orange" />
+            </div>
+            <h2 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-tighter leading-[0.9]">
+              SYNC-SYSTEM <br />
+              <span className="text-gradient">INTEGRATION.</span>
             </h2>
-            <p className="text-white/40 text-sm sm:text-lg md:text-xl leading-relaxed font-medium max-w-[280px] sm:max-w-lg">
+            <p className="text-white/40 text-sm sm:text-lg md:text-xl leading-relaxed font-medium max-w-md">
               Every IND EXP. machine is built on a unified digital spine for 24/7 reliability 
               in harsh industrial environments.
             </p>
@@ -78,16 +83,27 @@ export default function MachineShowcase() {
 
         {/* Stage 3: Operational Excellence */}
         <motion.div 
-          style={{ opacity: opacity_3, y: useTransform(smoothScroll, [0.85, 1], [50, -50]) }}
-          className="absolute inset-x-0 bottom-20 z-20 max-w-7xl mx-auto px-6 flex flex-col items-center text-center"
+          style={{ opacity: opacity_3, y: useTransform(smoothScroll, [0.75, 1], [50, 0]) }}
+          className="absolute inset-x-0 bottom-24 z-20 max-w-7xl mx-auto px-6 flex flex-col items-center text-center"
         >
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
-              Ready for <span className="text-safety-orange">Industry 4.0.</span>
+          <div className="space-y-8 glass-panel p-12 border border-white/5 backdrop-blur-xl">
+            <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">
+              READY FOR <span className="text-safety-orange">INDUSTRY 4.0.</span>
             </h3>
-            <p className="text-white/30 text-xs md:text-sm uppercase tracking-[0.4em] font-bold">
+            <p className="text-white/30 text-xs md:text-sm uppercase tracking-[0.6em] font-bold">
               Full Lifecycle Maintenance | Remote Diagnostics | Global Support
             </p>
+            <div className="flex justify-center gap-12 mt-8">
+              <div className="text-left">
+                <div className="text-safety-orange font-black text-2xl">99.9%</div>
+                <div className="text-white/20 text-[8px] font-black uppercase">Uptime Guarantee</div>
+              </div>
+              <div className="w-[1px] h-10 bg-white/10" />
+              <div className="text-left">
+                <div className="text-safety-orange font-black text-2xl">0.05s</div>
+                <div className="text-white/20 text-[8px] font-black uppercase">Response Latency</div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
