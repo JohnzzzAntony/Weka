@@ -49,7 +49,7 @@ export default function Collections() {
             className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-8"
           >
             Industrial <br /> <span className="text-gradient">Collections.</span>
-          </h1>
+          </motion.h1>
         </div>
         
         {/* Background Grid Accent */}
