@@ -38,9 +38,9 @@ export default function ValueProps() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-10 flex flex-col items-center text-center group hover:bg-white/5 active:scale-[0.98] transition-all"
+              className="glass-card p-6 md:p-10 flex flex-col items-center text-center group hover:bg-white/5 active:scale-[0.98] transition-all"
             >
-              <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-safety-orange mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5 group-hover:border-safety-orange/30">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/5 flex items-center justify-center text-safety-orange mb-6 md:mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5 group-hover:border-safety-orange/30">
                 {v.icon}
               </div>
               <h3 className="text-xl font-bold text-white mb-4 group-hover:text-safety-orange transition-colors">

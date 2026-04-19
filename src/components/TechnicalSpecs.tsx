@@ -42,22 +42,22 @@ export default function TechnicalSpecs() {
                 {group.category} Specs
               </h3>
               
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 {group.features.map((feature) => (
-                  <div key={feature.name} className="flex items-center justify-between group/item">
+                  <div key={feature.name} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 group/item">
                     <div className="flex items-center gap-4">
                       <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/40 group-hover/item:text-safety-orange transition-colors">
                         {feature.icon}
                       </div>
-                      <span className="text-white/60 font-medium">{feature.name}</span>
+                      <span className="text-white/60 font-medium text-sm md:text-base">{feature.name}</span>
                     </div>
-                    <span className="text-white font-black tracking-tight">{feature.value}</span>
+                    <span className="text-white font-black tracking-tight text-sm md:text-base pl-12 sm:pl-0 uppercase sm:normal-case">{feature.value}</span>
                   </div>
                 ))}
               </div>
               
-              <div className="mt-12 pt-8 border-t border-white/5 flex items-center justify-between">
-                <div className="text-[10px] text-white/20 uppercase tracking-widest font-bold">Protocol v4.2</div>
+              <div className="mt-8 md:mt-12 pt-8 border-t border-white/5 flex items-center justify-between">
+                <div className="text-[8px] md:text-[10px] text-white/20 uppercase tracking-widest font-bold">Protocol v4.2</div>
                 <div className="flex gap-1">
                   {[1, 2, 3].map(i => (
                     <div key={i} className="w-1 h-1 bg-safety-orange rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />

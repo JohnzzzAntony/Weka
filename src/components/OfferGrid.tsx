@@ -48,7 +48,7 @@ export default function OfferGrid() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 md:auto-rows-[250px]">
           {offers.map((offer, idx) => (
             <motion.div
               key={offer.title}
@@ -57,7 +57,7 @@ export default function OfferGrid() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
               className={cn(
-                "group relative rounded-3xl overflow-hidden glass-card p-8 flex flex-col justify-end",
+                "group relative rounded-3xl overflow-hidden glass-card p-6 md:p-8 flex flex-col justify-end min-h-[300px] md:min-h-0",
                 offer.className
               )}
             >

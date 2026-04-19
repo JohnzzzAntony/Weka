@@ -64,18 +64,18 @@ export default function Hero() {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-10 left-6 md:top-24 md:left-24 pointer-events-none z-20"
+            className="absolute top-1/2 -translate-y-1/2 left-6 md:left-24 pointer-events-none z-20"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 md:gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-[2px] bg-safety-orange" />
-                <span className="text-safety-orange font-black text-[10px] tracking-[0.6em] uppercase">Status: Operational</span>
+                <div className="w-8 md:w-10 h-[2px] bg-safety-orange" />
+                <span className="text-safety-orange font-black text-[9px] md:text-[10px] tracking-[0.6em] uppercase">Status: Operational</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] whitespace-nowrap">
                 PRECISION <br /> <span className="text-gradient">ENGINEERING.</span>
               </h1>
-              <div className="mt-6 p-4 glass-panel border border-white/5 backdrop-blur-sm max-w-sm">
-                <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-medium leading-relaxed">
+              <div className="mt-4 md:mt-6 p-4 md:p-6 glass-panel border border-white/5 backdrop-blur-sm max-w-[280px] md:max-w-sm">
+                <p className="text-white/40 text-[9px] md:text-[11px] uppercase tracking-[0.3em] font-medium leading-relaxed">
                   Next-generation industrial automation for critical infrastructure modules.
                 </p>
               </div>
@@ -88,7 +88,7 @@ export default function Hero() {
               opacity: useTransform(smoothProgress, [0.05, 0.15, 0.85, 0.95], [0, 1, 1, 0]),
               translateY: useTransform(smoothProgress, [0, 1], [0, -50])
             }}
-            className="absolute top-1/2 right-24 -translate-y-1/2 hidden lg:flex flex-col gap-8 pointer-events-none z-20"
+            className="absolute top-1/2 right-6 md:right-24 -translate-y-1/2 hidden md:flex flex-col gap-6 md:gap-8 pointer-events-none z-20"
           >
             {[
               { label: "RPM", val: "14,200" },
@@ -96,8 +96,8 @@ export default function Hero() {
               { label: "TEMP", val: "42°C" }
             ].map((stat) => (
               <div key={stat.label} className="text-right">
-                <div className="text-white/20 text-[9px] font-black tracking-widest uppercase">{stat.label}</div>
-                <div className="text-white text-2xl font-black tabular-nums">{stat.val}</div>
+                <div className="text-white/20 text-[8px] md:text-[9px] font-black tracking-widest uppercase">{stat.label}</div>
+                <div className="text-white text-xl md:text-2xl font-black tabular-nums">{stat.val}</div>
               </div>
             ))}
           </motion.div>

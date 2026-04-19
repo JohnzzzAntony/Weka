@@ -53,10 +53,11 @@ export default function RegionalMap() {
         </div>
 
         <div className="flex-1 w-full relative">
-          <div className="relative aspect-video rounded-3xl overflow-hidden glass-panel border border-white/10 p-12 flex items-center justify-center">
+          <div className="relative aspect-square md:aspect-video rounded-3xl overflow-hidden glass-panel border border-white/10 p-4 md:p-12 flex items-center justify-center">
             {/* Minimalist Tech Map Representation */}
-            <div className="relative w-full h-full bg-industrial-blue/10 rounded-2xl flex items-center justify-center">
-              <Globe size={160} className="text-white/5 animate-pulse" />
+            <div className="relative w-full h-full bg-industrial-blue/10 rounded-2xl flex items-center justify-center overflow-hidden">
+              <Globe size={100} className="text-white/5 animate-pulse md:hidden" />
+              <Globe size={160} className="text-white/5 animate-pulse hidden md:block" />
               
               {/* Dynamic Map Pins */}
               {regions.map((region, i) => (
@@ -70,14 +71,14 @@ export default function RegionalMap() {
                   className="absolute"
                 >
                   <div className="relative flex items-center justify-center">
-                    <div className="absolute inset-0 bg-safety-orange/30 animate-ping rounded-full scale-150" />
-                    <div className="w-3 h-3 bg-safety-orange rounded-full shadow-[0_0_15px_rgba(243,156,18,0.5)]" />
+                    <div className="absolute inset-0 bg-safety-orange/30 animate-ping rounded-full scale-110 md:scale-150" />
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-safety-orange rounded-full shadow-[0_0_15px_rgba(243,156,18,0.5)]" />
                   </div>
                 </motion.div>
               ))}
               
-              {/* Tech lines */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
+              {/* Tech lines - Hidden on mobile for clarity */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 hidden md:block">
                 <motion.path
                   id="line-path"
                   initial={{ pathLength: 0 }}
@@ -87,15 +88,14 @@ export default function RegionalMap() {
                   fill="none"
                   stroke="#F39C12"
                   strokeWidth="0.5"
-                  className="hidden md:block"
                 />
               </svg>
             </div>
             
             {/* Labels overlay */}
-            <div className="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
-              <div className="w-2 h-2 bg-safety-orange rounded-full" />
-              <span className="text-[10px] text-white/60 font-black uppercase tracking-widest">Live Network Status: Optimal</span>
+            <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-safety-orange rounded-full" />
+              <span className="text-[8px] md:text-[10px] text-white/60 font-black uppercase tracking-widest leading-none">Network: Optimal</span>
             </div>
           </div>
         </div>

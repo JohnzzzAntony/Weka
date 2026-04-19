@@ -16,16 +16,16 @@ export default function Footer() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-panel p-10 md:p-12 rounded-[40px] relative"
+            className="glass-panel p-6 md:p-12 rounded-3xl md:rounded-[40px] relative"
           >
-            <div className="absolute top-8 right-8 text-safety-orange opacity-20">
-              <Mail size={80} strokeWidth={1} />
+            <div className="absolute top-8 right-8 text-safety-orange opacity-10 md:opacity-20">
+              <Mail size={60} md:size={80} strokeWidth={1} />
             </div>
             
-            <h2 className="text-4xl font-black text-white mb-4 tracking-tighter">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter">
               Ready for <br /> <span className="text-gradient">Precision?</span>
             </h2>
-            <p className="text-white/40 mb-10 max-w-sm">
+            <p className="text-white/40 mb-8 md:mb-10 max-w-sm text-sm md:text-base">
               Request a technical consultation or a formal quote for your industrial tooling project.
             </p>
 
@@ -34,25 +34,25 @@ export default function Footer() {
                 <input 
                   type="text" 
                   placeholder="Full Name"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
                 />
                 <input 
                   type="email" 
                   placeholder="Email Address"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
                 />
               </div>
               <input 
                 type="text" 
                 placeholder="Company Name"
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors"
               />
               <textarea 
                 rows={4}
                 placeholder="Industrial Requirements / Message"
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors resize-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-5 md:px-6 py-3 md:py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange/50 transition-colors resize-none"
               />
-              <button className="w-full group bg-safety-orange hover:bg-orange-500 text-white font-black py-5 rounded-2xl text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3">
+              <button className="w-full group bg-safety-orange hover:bg-orange-500 text-white font-black py-4 md:py-5 rounded-xl md:rounded-2xl text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3">
                 Submit Request <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
@@ -60,23 +60,23 @@ export default function Footer() {
 
           {/* Info Side */}
           <div className="flex flex-col justify-between py-10">
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
               <div>
                 <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Solutions</h4>
                 <ul className="space-y-4 text-white/40 text-sm font-medium">
-                  <li><a href="#solutions" className="hover:text-safety-orange transition-colors">Shot Blasting</a></li>
-                  <li><a href="#showcase" className="hover:text-safety-orange transition-colors">Brush Automation</a></li>
-                  <li><a href="#solutions" className="hover:text-safety-orange transition-colors">Segments</a></li>
-                  <li><a href="#solutions" className="hover:text-safety-orange transition-colors">Spares</a></li>
+                  <li><a href="/" className="hover:text-safety-orange transition-colors">Shot Blasting</a></li>
+                  <li><a href="/collections" className="hover:text-safety-orange transition-colors">Brush Automation</a></li>
+                  <li><a href="/collections" className="hover:text-safety-orange transition-colors">Segments</a></li>
+                  <li><a href="/collections" className="hover:text-safety-orange transition-colors">Spares</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
                 <ul className="space-y-4 text-white/40 text-sm font-medium">
-                  <li><a href="#" className="hover:text-safety-orange transition-colors">About Us</a></li>
-                  <li><a href="#" className="hover:text-safety-orange transition-colors">Support Case</a></li>
-                  <li><a href="#" className="hover:text-safety-orange transition-colors">Contact</a></li>
-                  <li><a href="#" className="hover:text-safety-orange transition-colors">Careers</a></li>
+                  <li><a href="/about" className="hover:text-safety-orange transition-colors">About Us</a></li>
+                  <li><a href="/contact" className="hover:text-safety-orange transition-colors">Support Case</a></li>
+                  <li><a href="/contact" className="hover:text-safety-orange transition-colors">Contact</a></li>
+                  <li><a href="/about" className="hover:text-safety-orange transition-colors">Careers</a></li>
                 </ul>
               </div>
             </div>

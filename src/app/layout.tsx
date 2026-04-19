@@ -17,6 +17,14 @@ export const metadata: Metadata = {
   description: "Premier industrial CNC solutions, structural steel engineering, and aerospace tooling across the GCC & MENA regions. Established in 1996.",
 };
 
+export const viewport = {
+  themeColor: "#0f171c",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

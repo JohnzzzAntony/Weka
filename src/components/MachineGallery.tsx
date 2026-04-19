@@ -29,7 +29,7 @@ export default function MachineGallery() {
           <h2 className="text-4xl font-black text-white tracking-tighter uppercase">Machine <span className="text-gradient">Gallery.</span></h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 pl-4 pr-4 md:px-0">
           {items.map((item, i) => (
             <motion.div
               key={item.title}
@@ -39,7 +39,7 @@ export default function MachineGallery() {
               viewport={{ once: true }}
               className="group relative"
             >
-              <div className="aspect-[4/5] rounded-[40px] overflow-hidden glass-panel border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.5)] group-hover:shadow-safety-orange/20 transition-all duration-700">
+              <div className="aspect-[3/4] md:aspect-[4/5] rounded-[30px] md:rounded-[40px] overflow-hidden glass-panel border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.5)] group-hover:shadow-safety-orange/20 transition-all duration-700">
                 {/* Fallback pattern if image is missing */}
                 <div className="absolute inset-0 bg-industrial-blue/20" />
                 
