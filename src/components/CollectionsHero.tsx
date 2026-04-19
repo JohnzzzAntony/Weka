@@ -31,10 +31,11 @@ export default function CollectionsHero() {
         className="absolute inset-0 w-full h-full"
       >
         <Image
-          src="/cnc_machine_hero_1776527664550.png"
-          alt="Industrial Collection Hero"
+          src="/frames/brush/ezgif-frame-001.jpg"
+          alt="Industrial Brush Collection Hero"
           fill
-          className="object-cover brightness-50"
+          style={{ filter: "brightness(0.7) contrast(1.15) grayscale(0.2)" }}
+          className="object-cover"
           priority
         />
         {/* Apple-style gradient overlay */}
