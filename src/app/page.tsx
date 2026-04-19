@@ -13,7 +13,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "IND EXP. | Industrial Automation & Surface Excellence",
   description: "GCC's leading provider of automated shot blasting, CNC machining, and industrial brush solutions. Engineering mastery since 1996.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function Home() {
