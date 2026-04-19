@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IND EXP. | Industrial Automation & Surface Excellence",
+  title: "IND EXP | WEKA MODERN",
   description: "GCC's leading provider of automated shot blasting, CNC machining, and industrial brush solutions. Engineering mastery since 1996.",
 };
 
