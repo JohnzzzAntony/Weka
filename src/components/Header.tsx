@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,48 +73,61 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-[#0f171c] md:hidden animate-in fade-in duration-300">
-          <div className="flex flex-col h-full p-8 pt-32">
-            <div className="flex flex-col gap-8">
-              {navItems.map((item, idx) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="text-4xl font-black text-white uppercase tracking-tighter"
-                    onClick={() => setIsMobileMenuOpen(false)}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[50] bg-[#0f171c]/98 backdrop-blur-2xl md:hidden overflow-hidden"
+          >
+            <div className="flex flex-col h-full p-8 pt-32 relative">
+              {/* Background Accent */}
+              <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-safety-orange/5 blur-[120px] rounded-full pointer-events-none" />
+              
+              <div className="flex flex-col gap-6 md:gap-8 relative z-10">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.1, duration: 0.5 }}
                   >
-                    {item.name}
+                    <Link
+                      href={item.href}
+                      className="text-5xl font-black text-white uppercase tracking-tighter hover:text-safety-orange transition-colors inline-block"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-8"
+                >
+                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    <button className="bg-safety-orange w-full py-6 rounded-xl text-white font-black text-xl uppercase tracking-widest shadow-2xl shadow-safety-orange/20 active:scale-95 transition-transform">
+                      Contact Now
+                    </button>
                   </Link>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <button className="bg-safety-orange w-full py-5 rounded-sm text-white font-black text-xl uppercase tracking-widest mt-8 shadow-2xl shadow-safety-orange/20">
-                    Contact Now
-                  </button>
-                </Link>
-              </motion.div>
+              </div>
+              
+              <div className="mt-auto border-t border-white/5 pt-12 relative z-10">
+                <span className="text-white/20 text-[10px] font-black uppercase tracking-[0.5em] block mb-4">Weka Engineering & Tools</span>
+                <p className="text-white/40 text-xs leading-relaxed max-w-xs uppercase tracking-widest font-bold">
+                  High-Inertia Industrial Automation <br /> 
+                  <span className="text-white/60">Ready for Global Distribution</span>
+                </p>
+              </div>
             </div>
-            
-            <div className="mt-auto border-t border-white/5 pt-12">
-              <span className="text-white/20 text-xs font-black uppercase tracking-[0.5em] block mb-4">Weka Machines & Tools FZE</span>
-              <p className="text-white/40 text-sm leading-relaxed max-w-xs">
-                Precision engineering and industrial automation solutions.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
