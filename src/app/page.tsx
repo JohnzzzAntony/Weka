@@ -18,6 +18,11 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0f171c] selection:bg-safety-orange selection:text-white relative">
+      {/* DEPLOYMENT VERIFICATION BAR */}
+      <div className="fixed top-0 left-0 right-0 z-[9999] bg-safety-orange text-white text-[10px] font-black uppercase tracking-[0.3em] flex items-center justify-center py-2">
+        LATEST VERSION 2.0
+      </div>
+
       {/* Global Aesthetics */}
       <div className="fixed inset-0 pointer-events-none z-[100] opacity-[0.03] grayscale bg-[url('https://www.transparenttextures.com/patterns/simple-dashed.png')]" />
       
