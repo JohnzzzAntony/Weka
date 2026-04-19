@@ -19,7 +19,8 @@ export default function Footer() {
             className="glass-panel p-6 md:p-12 rounded-3xl md:rounded-[40px] relative"
           >
             <div className="absolute top-8 right-8 text-safety-orange opacity-10 md:opacity-20">
-              <Mail size={60} md:size={80} strokeWidth={1} />
+              <Mail size={60} strokeWidth={1} className="md:hidden" />
+              <Mail size={80} strokeWidth={1} className="hidden md:block" />
             </div>
             
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter">
