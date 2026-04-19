@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import MachineShowcase from "@/components/MachineShowcase";
 import OfferGrid from "@/components/OfferGrid";
 import BrandMarquee from "@/components/BrandMarquee";
 import RegionalMap from "@/components/RegionalMap";
@@ -35,15 +34,7 @@ export default function Home() {
       <div className="relative z-10 bg-[#0f171c]">
         <About />
         
-        {/* Transitional Bridge: About -> Showcase */}
-        <div className="h-32 bg-gradient-to-b from-[#0f171c] to-[#0a0f12]" />
-        
-        <MachineShowcase />
-        
         <div className="relative bg-[#0f171c]">
-           {/* Section Bridge */}
-          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#0a0f12] to-[#0f171c] -translate-y-full" />
-          
           <TechnicalSpecs />
           <MachineGallery />
           <BrandMarquee />
